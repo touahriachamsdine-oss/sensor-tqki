@@ -1,0 +1,21 @@
+{
+  "name": "Fares Sensor",
+  "short_name": "Fares Sensor",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "description": "Visualize, analyze, and calibrate 3D sensor data in real-time. Turn raw point clouds into actionable insights.",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+
+{
+  "rules": {
+    "sensors": {
+      "$sensorId": {
+        // Only an authenticated user can write data.
+        ".write": "auth != null && newData.hasChildren(['id', 'sensorId', 'matrix', 'timestamp']) && newData.child('sensorId').val() === $sensorId",
+        // Anyone can read the sensor data.
+        ".read": true,
+        "id": {
+          ".validate": "newData.isString()"
+        },
+        "sensorId": {
+          ".validate": "newData.isString()"
+        },
+        "timestamp": {
+          ".validate": "newData.isNumber()"
+        },
+        "matrix": {
+          ".validate": "newData.hasChildren() && newData.child('0').hasChildren() && newData.child('0').child('0').isNumber()"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Sensor {
+  id        String    @id @default(cuid())
+  sensorId  String    @unique // 'frontSensor', 'leftSensor', 'rightSensor'
+  readings  Reading[]
+}
+
+model Reading {
+  id        String   @id @default(cuid())
+  sensorId  String
+  sensor    Sensor   @relation(fields: [sensorId], references: [sensorId])
+  matrix    Json     // 8x8 number array
+  timestamp BigInt   // Unix timestamp in ms
+  createdAt DateTime @default(now())
+
+  @@index([sensorId])
+  @@index([timestamp])
+}
+
+model Control {
+  id        String   @id @default("singleton")
+  buzzer    Boolean  @default(false)
+  updatedAt DateTime @updatedAt
+}
+
+model Recording {
+  id        String   @id @default(cuid())
+  name      String?
+  data      Json     // Array of ObjectPosition
+  createdAt DateTime @default(now())
+}
